@@ -1,0 +1,26 @@
+<html>  
+    <head>  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
+        <meta http-equiv="refresh" content="10">
+    </head>
+    
+    <body>
+        <h2>Please list all possible uses you can think of for a brick</h2>  
+        <div id="textboxDiv">
+            <div><br><input name ='inp1' type='text'/><br></div>
+            <div><br><input name ='inp2' type='text'/><br></div>
+            <div><br><input name ='inp3' type='text'/><br></div>
+        </div>  
+        
+        <script>  
+            var count = 4
+            $(document).ready(function() {  
+                $("#add").on("click", function() {  
+                    $("#textboxDiv").append(`<div><br><input name='inp${count}' type='text'/><br></div>`);  
+                    count = count+1;
+                });
+            });  
+        </script> 
+        <br><button id="add">+</button> 
+    </body>  
+</html>  
