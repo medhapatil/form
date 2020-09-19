@@ -8,11 +8,10 @@
         <br><input type='text' class='inputs'><br>
         <br><input type='text' class='inputs'><br>
         <br><input type='text' class='inputs'><br>
+        <br><input type='text' class='inputs'><br>
+        <br><input type='text' class='inputs'><br>
     </div>
-    <!-- <input type="button" value="Add text box" onClick="addInput();"> -->
 </form>
-
-<!-- <button onclick="openWin()">Open "myWindow"</button> -->
 
 <script>
 
@@ -48,6 +47,12 @@ function nextCondition() {
     var newdiv3 = document.createElement('div');
     newdiv3.innerHTML = "<br><input type='text' class='inputs'><br>";
     document.getElementById('formDiv').appendChild(newdiv3);
+    var newdiv4 = document.createElement('div');
+    newdiv4.innerHTML = "<br><input type='text' class='inputs'><br>";
+    document.getElementById('formDiv').appendChild(newdiv4);
+    var newdiv5 = document.createElement('div');
+    newdiv5.innerHTML = "<br><input type='text' class='inputs'><br>";
+    document.getElementById('formDiv').appendChild(newdiv5);
 }
 
 function openWin() {
@@ -60,7 +65,7 @@ function openWin() {
         var hiddenElement = document.createElement('a');
         hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
         hiddenElement.target = '_blank';
-        // hiddenElement.download = 'data.csv';
+        hiddenElement.download = 'data.csv';
         hiddenElement.click();
         window.close();
     } }, 3000);
