@@ -1,88 +1,72 @@
 <!DOCTYPE html>
 <html>
-<body onload="init(24000)">
+<body onload="init(9000)">
 
 <p id='question'>Please list alternate uses of a brick:</p>
 <form>
     <div id='formDiv'>
-        <br><input type='text' class='inputs'>
-        <br><input type='text' class='inputs'>
-        <br><input type='text' class='inputs'>
+        <br><input type='text' class='inputs'><br>
+        <br><input type='text' class='inputs'><br>
+        <br><input type='text' class='inputs'><br>
     </div>
-    <input type="button" value="Add text box" onClick="addInput();">
+    <!-- <input type="button" value="Add text box" onClick="addInput();"> -->
 </form>
 
-<button onclick="openWin()">Open "myWindow"</button>
+<!-- <button onclick="openWin()">Open "myWindow"</button> -->
 
 <script>
 
-var condCount = 1
+var condCount = 0;
 var csv = "";
 var conditions = ["brick","toothpick"];
 
 function init(time) {
-    setTimeout(nextCondition(), time);
+    setTimeout(nextCondition, time);
 }
 
-function nextCondition(condType) {
-    counter = 3;
+function nextCondition() {
+    openWin();
     var x = document.getElementsByClassName("inputs");
     for (i = 0; i < x.length; i++) {
-        csv += conditions[condType];
-        csv += ",";
-        csv += x[i];
-        csv += "\n";
-       if (i > 2) {
-        x.removeChild(x.childNodes[i]);
-       }
+        if (x[i].value != "") {
+            csv += conditions[condCount];
+            csv += ",";
+            csv += x[i].value;
+            x[i].value="";
+            csv += "\n";
+        }
     }
-    document.getElementById('formDiv').innerHTML = "";
     condCount += 1;
-    if (condCount == 1) {
-        init(48000);
-    } else if (condCount == 2) {
-        var hiddenElement = document.createElement('a');
-        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-        hiddenElement.target = '_blank';
-        hiddenElement.download = 'data.csv';
-        hiddenElement.click();
-        window.close();
-    }
+    document.getElementById('question').innerHTML = "Please list alternate uses of a toothpick:";
+    document.getElementById('formDiv').innerHTML = "";
+    var newdiv1 = document.createElement('div');
+    newdiv1.innerHTML = "<br><input type='text' class='inputs'><br>";
+    document.getElementById('formDiv').appendChild(newdiv1);
+    var newdiv2 = document.createElement('div');
+    newdiv2.innerHTML = "<br><input type='text' class='inputs'><br>";
+    document.getElementById('formDiv').appendChild(newdiv2);
+    var newdiv3 = document.createElement('div');
+    newdiv3.innerHTML = "<br><input type='text' class='inputs'><br>";
+    document.getElementById('formDiv').appendChild(newdiv3);
 }
 
 function openWin() {
   var myWindow = window.open("https://medhapatil.github.io/sorting/", "myWindow", "width=200, height=100");
-  myWindow.document.write("<p>This is 'myWindow'</p>");
-  setTimeout(function(){ myWindow.close() }, 3000);
+  myWindow.document.write("<p>SORTING TASK WILL COME HERE</p>");
+  setTimeout(function(){ myWindow.close()
+    if (condCount == 1) {
+        init(9000);
+    } else if (condCount == 2) {
+        var hiddenElement = document.createElement('a');
+        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+        hiddenElement.target = '_blank';
+        // hiddenElement.download = 'data.csv';
+        hiddenElement.click();
+        window.close();
+    } }, 3000);
+
 }
 
-function download_csv() {
-    var csv = 'Name,Title\n';
-    data.forEach(function(row) {
-            csv += row.join(',');
-            csv += "\n";
-    });
- 
-    console.log(csv);
-    var hiddenElement = document.createElement('a');
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'people.csv';
-    hiddenElement.click();
-}
-
-var counter = 3;
-function addInput(){
-     if (counter == 21)  {
-          alert("You have reached the limit of adding " + counter + " inputs");
-     }
-     else {
-          var newdiv = document.createElement('div');
-          newdiv.innerHTML = "<br><input type='text' class='inputs'>";
-          document.getElementById('formDiv').appendChild(newdiv);
-          counter++;
-     }
-}
 
 </script>
 
