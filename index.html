@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- <html>
+<html>
 <body>
 
 <p>Please list alternate uses of a brick:</p>
@@ -18,40 +18,37 @@ function openWin() {
   setTimeout(function(){ myWindow.close() }, 3000);
 }
 
+function download_csv() {
+    var csv = 'Name,Title\n';
+    data.forEach(function(row) {
+            csv += row.join(',');
+            csv += "\n";
+    });
+ 
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'people.csv';
+    hiddenElement.click();
+}
+
+var counter = 3;
+var limit = 10;
+function addInput(divName){
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "Entry " + (counter + 1) + " <br><input type='text' name='myInputs[]'>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}
+
 </script>
 
 </body>
-</html> -->
-
-<html>
-<head>
-    <script type='text/javascript'>
-        function addFields(){
-            // Number of inputs to create
-            var number = document.getElementById("member").value;
-            // Container <div> where dynamic content will be placed
-            var container = document.getElementById("container");
-            // Clear previous contents of the container
-            while (container.hasChildNodes()) {
-                container.removeChild(container.lastChild);
-            }
-            for (i=0;i<number;i++){
-                // Append a node with a random text
-                container.appendChild(document.createTextNode("Member " + (i+1)));
-                // Create an <input> element, set its type and name attributes
-                var input = document.createElement("input");
-                input.type = "text";
-                input.name = "member" + i;
-                container.appendChild(input);
-                // Append a line break 
-                container.appendChild(document.createElement("br"));
-            }
-        }
-    </script>
-</head>
-<body>
-    <input type="text" id="member" name="member" value="">Number of members: (max. 10)<br />
-    <a href="#" id="filldetails" onclick="addFields()">Fill Details</a>
-    <div id="container">
-</body>
 </html>
+
