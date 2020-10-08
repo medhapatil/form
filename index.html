@@ -66,8 +66,8 @@
 <script>
 
 var condCount = 0;
-var autTimes = [90000, 60000, 30000, 60000, 90000, 150000];
-var sortTimes = [90000, 30000, 60000, 60000, 150000, 90000];
+var autTimes = [9000, 6000, 3000, 6000, 9000, 15000];
+var sortTimes = [9000, 3000, 6000, 6000, 15000, 9000];
 var csv = "";
 var condition = "brick";
 
@@ -96,7 +96,7 @@ function nextCondition() {
     condCount += 1;
     if (condCount == 4) {
         condition = "toothpick";
-        document.getElementById('question').innerHTML = "Please list alternate uses of a toothpick:";
+        document.getElementById('question').innerHTML = "Please list uses of a toothpick:";
     }
     document.getElementById('formDiv').innerHTML = "";
     var newdiv1 = document.createElement('div');
