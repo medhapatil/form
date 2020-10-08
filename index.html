@@ -1,8 +1,44 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Study</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <style>
+            body { text-align: center;
+                font-family: 'Roboto', sans-serif; }
+            h1 {
+                color: rgb(80, 80, 80);
+                }
+            form { margin-left: 25%;
+    margin-right:25%;
+     }
+            input[type=text] {
+                width: 80%;
+                padding:10px 10px 10px 10px;
+                margin: 20px 20px 20px 20px;
+                box-shadow: -3px 3px 10px 0 rgba(0,0,0,0.08);
+                border-radius:15px;
+                border-width: 1.5px;
+                border-style:solid;
+                border-color: grey;
+                font-family: 'Roboto', sans-serif;
+                
+                
+            }
+            input[type=text]:focus {
+                /* border-color:black; */
+                outline: none;
+            }
+            input{
+                font-size: 21px;
+                color: rgb(75, 74, 74);
+            }
+        
+        </style>
+    </head>
 <body onload="autInit()">
 
-<p id='question'>Please list alternate uses of a brick:</p>
+<h1 id='question'>Please list uses of a brick:</h1>
 <form>
     <div id='formDiv'>
         <br><input type='text' class='inputs'><br>
@@ -30,10 +66,10 @@
 <script>
 
 var condCount = 0;
-var autTimes = [9000, 6000, 3000, 6000, 9000, 15000];
-var sortTimes = [9000, 3000, 6000, 6000, 15000, 9000];
+var autTimes = [90000, 60000, 30000, 60000, 90000, 150000];
+var sortTimes = [90000, 30000, 60000, 60000, 150000, 90000];
 var csv = "";
-var conditions = ["brick","toothpick"];
+var condition = "brick";
 
 function autInit() {
     setTimeout(nextCondition, autTimes[condCount]);
@@ -44,7 +80,7 @@ function nextCondition() {
     var x = document.getElementsByClassName("inputs");
     for (i = 0; i < x.length; i++) {
         if (x[i].value != "") {
-            csv += conditions[condCount];
+            csv += condition;
             csv += ",";
             csv += x[i].value;
             x[i].value="";
@@ -59,6 +95,7 @@ function nextCondition() {
     }
     condCount += 1;
     if (condCount == 4) {
+        condition = "toothpick";
         document.getElementById('question').innerHTML = "Please list alternate uses of a toothpick:";
     }
     document.getElementById('formDiv').innerHTML = "";
